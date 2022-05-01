@@ -1,6 +1,38 @@
+-- Gives you the average value from the budget column of the films table
+
 SELECT AVG(budget)
 FROM films;
 
+SELECT AVG (gross)
+FROM films
+WHERE title LIKE 'A%';
+
+
+-- MIN() function returns the lowest budget
+
+SELECT MIN (duration)
+FROM films
+
+SELECT MIN (gross)
+FROM films
+WHERE release_year = 1994;
+
+
+-- MAX() function returns the highest budget
 
 SELECT MAX(budget)
 FROM films;
+
+SELECT MAX (gross)
+FROM films
+WHERE release_year BETWEEN 2000 AND 2012;
+
+
+-- The SUM() function returns the result of adding up the numeric values in a column
+
+SELECT SUM(budget)
+FROM films;
+
+SELECT SUM (gross)
+FROM films
+WHERE release_year >= 2000;
