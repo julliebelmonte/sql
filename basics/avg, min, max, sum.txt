@@ -1,0 +1,6 @@
+SELECT AVG(budget)
+FROM films;
+
+
+SELECT MAX(budget)
+FROM films;

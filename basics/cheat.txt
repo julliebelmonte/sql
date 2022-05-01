@@ -5,3 +5,13 @@
 <= less than or equal to
 >= greater than or equal to
 
+--
+
+WHERE clause can be used to filter text data. However, so far you've only been able to filter by specifying the exact text you're interested in.
+LIKE operator can be used in a WHERE clause to search for a pattern in a column.
+You can also use the NOT LIKE operator to find records that don't match the pattern you specify.
+
+--
+
+
+
