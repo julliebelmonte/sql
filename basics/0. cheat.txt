@@ -1,0 +1,31 @@
+= equal
+<> not equal
+< less than
+> greater than
+<= less than or equal to
+>= greater than or equal to
+
+--
+
+WHERE clause can be used to filter text data. However, so far you've only been able to filter by specifying the exact text you're interested in.
+LIKE operator can be used in a WHERE clause to search for a pattern in a column.
+You can also use the NOT LIKE operator to find records that don't match the pattern you specify.
+
+--
+
+Aliasing simply means you assign a temporary name to something. To alias, you use the AS keyword.
+
+-- 
+
+ORDER BY keyword is used to sort results in ascending or descending order according to the values of one or more columns.
+By default ORDER BY will sort in ascending order. If you want to sort the results in descending order, you can use the DESC keyword.
+
+ORDER BY can also be used to sort on multiple columns. It will sort by the first column specified, then sort by the next, then the next, and so on
+
+-- 
+
+A word of warning: SQL will return an error if you try to SELECT a field that is not in your GROUP BY clause without using it to calculate some kind of value about the entire group.
+
+Note that you can combine GROUP BY with ORDER BY to group your results, calculate something about them, and then order your results.
+
+
