@@ -1,0 +1,9 @@
+-- Select fields
+SELECT c.name AS country, continent, l.name AS language, l.official
+  -- From countries (alias as c)
+FROM countries AS c
+  -- Join to languages (as l)
+  INNER JOIN languages AS l
+    -- Match using code
+    USING (code)
+
