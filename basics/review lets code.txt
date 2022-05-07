@@ -1,0 +1,106 @@
+-- Exemplo 1
+select dt_nasc, endereco
+from funcionario
+where nome = 'Joao' and sobrenome = 'Silva';
+
+-- Exemplo 2
+select salario
+from funcionario
+where S_ident is null and D_num = 5;
+
+-- Exemplo 3: Para cada projeto localizado em 'Mauá', liste o número de projeto, 
+-- o número do departamento que o controla e o sobrenome, endereço e data de nascimento do gerente.
+select projeto.numero, departamento.numero, sobrenome, endereco, dt_nasc
+from projeto, funcionario, departamento
+where projeto.D_num = departamento.numero and Gident = ident and projeto.localizacao = 'Mauá';
+
+-- Exemplo 4: Para cada funcionário, recupere o seu nome e sobrenome e as mesmas informações do seu supervisor.
+select F.nome as Nome_Funcionario,
+	   F.sobrenome as Sobrenome_Funcionario,
+       S.nome as Nome_Supervisor,
+	   S.sobrenome as Sobrenome_Supervisor 
+from funcionario as F, funcionario as S
+where F.S_ident = S.ident;
+
+-- Exemplo 5: Selecione todos os valores de ident de FUNCIONARIO.
+select ident
+from funcionario;
+
+-- Exemplo 6: Selecione todos as combinações de ident e nome de departamento no banco de dados.
+select F.ident, D.nome
+from funcionario as F, departamento as D;
+
+-- Exemplo 7: Recupere todos os valores de atributo de qualquer funcionário com o gerente 1161.
+select *
+from funcionario
+where S_ident = 1161;
+
+-- Exemplo 8: Recupere todos os atributos de um gerente e os atributos do departamento que ele gerencia.
+select *
+from funcionario as F, departamento as D
+where F.ident = D.Gident;
+
+-- Exemplo 9: Queremos saber quais funcionários trabalham nos departamentos 1, 2 ou 3.
+select nome, sobrenome
+from funcionario
+where D_num IN (1,2,3);
+
+-- Exemplo 10: Queremos recuperar o nome e sobrenome de todos os funcionários com endereço em São Paulo, SP.
+select nome, sobrenome
+from funcionario
+where endereco like '%São Paulo%';
+
+-- Exemplo 11: Recuperar todos os funcionários que nasceram na década de 60:
+select *
+from funcionario
+where dt_nasc like '__6_______';
+
+-- Exemplo 12: Qual o efeito de dar 10% de aumento nos funcionários que trabalham em no projeto 'Produto H'.
+select F.nome,
+       F.sobrenome,
+       salario,
+       1.1*salario as aumento_salario
+from funcionario as f, trabalha_em as t, projeto as p
+where F.ident = T.F_ident and T.P_numero = P.numero and P.nome = 'Produto H';
+
+-- Exemplo 13: Recupere todos os funcionários com salário entre R$ 30000 e R$ 40000.
+select *
+from funcionario
+where (salario between 30000 and 40000);
+
+select *
+from funcionario
+where (salario >= 30000) and (salario <= 40000);
+
+-- Exemplo 1: Encontre a soma dos salários de todos os funcionários, bem como o salário mínimo, máximo e o valor médio.
+select sum(salario) as soma,
+       min(salario) as minimo,
+       max(salario) as maximo,
+       avg(salario) as media
+from funcionario;
+-- Exemplo 2: Encontre a soma dos salários de todos os funcionários, bem como o salário mínimo, máximo e o valor médio do departamento Pesquisa.
+select sum(salario) as soma,
+       min(salario) as minimo,
+       max(salario) as maximo,
+       avg(salario) as media
+from funcionario, departamento as D
+where D.nome = 'Pesquisa' and D_num = D.numero;
+
+-- Exemplo 3: Recuperar o número total de funcionários na empresa.
+select count(*)
+from funcionario;
+-- Exemplo 4: Recuperar o número total de funcionários no departamento Pesquisa.
+select count(*)
+from funcionario, departamento as D
+where D.nome = 'Pesquisa' and D_num = D.numero;
+-- Exemplo 5: Contar o número de valores de salário distintos no BD.
+select count(distinct salario)
+from funcionario;
+
+select D_num,
+       count(*),
+       avg(salario)
+from funcionario
+group by D_num
+order by salario asc;
+
